@@ -10,7 +10,7 @@ Why we change?
 
 1. 调试界面简单直观
 
-![](file://C:\Users\Dell\AppData\Roaming\marktext\images\2023-03-20-05-25-00-image.png?msec=1679261100657)
+![](config/1-1.png)
 
 2. 能够在机械没出车的情况下完成代码的初调
 
@@ -22,7 +22,7 @@ Why we change?
 
 我们开发的ros代码是基于ros_control进行开发的，数据流图如下：
 
-![](file://C:\Users\Dell\AppData\Roaming\marktext\images\2023-03-20-05-25-09-image.png?msec=1679261109621)
+![](config/1-2.png)
 
 这样我们可以通过简单的通过加载不同的控制器，而且控制器与实际硬件环境没有关系，它更像一个可插拔的接口，如果我们要上不同的机器人，只要根据需求加载不同的控制器，写不同的配置文件，不需要写任何一套代码，所有机器人共用一套代码。
 
