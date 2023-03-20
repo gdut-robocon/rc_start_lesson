@@ -1,6 +1,6 @@
 # rc_start_lesson
-this is a project for rc_control beginner
-**前言**
+##this is a project for rc_control beginner
+##前言
 
 Why we change?
 
