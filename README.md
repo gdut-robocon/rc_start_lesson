@@ -44,7 +44,9 @@ ROS系统：ros_noetic
 
 1. ROS理论与知识文档 [Introduction · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程](http://www.autolabor.com.cn/book/ROSTutorials/index.html)
 
-2. Rm_control的开源说明  https://rm-control-docs.netlify.app/en/ （大家可以跟着这里跑一遍代码，我们的代码结构还是很像的）
+2. Rm_control的开源说明  https://rm-control-docs.netlify.app/en/ 
+
+
 
 3. GDUT_ROBOCON开源仓库 https://github.com/gdut-robocon
 
@@ -62,6 +64,8 @@ https://www.bilibili.com/video/BV1iW4y1K7LN/?spm_id_from=333.337.search-card.all
 
 2. Shell学习 简单了解
 
-3. CMake学习 简单了解
+3. CMake学习 
+
+https://zhuanlan.zhihu.com/p/500002865
 
 接下来会根据大家项目课的要求开设课程，大家做好准备。
