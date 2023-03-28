@@ -12,8 +12,6 @@
 
 好了，现在我们开始布置第一次的作业吧。
 
-
-
 ## 关键词：话题通信
 
 编写一个ROS节点，该节点订阅名为“input_topic”的字符串类型话题，并将其转换为大写字母，并通过名为“output_topic”的新话题发布结果。例如，如果输入是“hello world”，那么输出应该是“HELLO WORLD”。
@@ -27,7 +25,7 @@
 
 提示：
 
-1. 可以使用ROS的StringTools库实现字符串转换。
+1. 可以使用C++标准库中的std::toupper实现字符串转换。
 2. 可以使用ROS的NodeHandle库函数访问话题。
 3. 记得写callback函数
 
