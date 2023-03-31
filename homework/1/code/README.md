@@ -13,7 +13,7 @@ void stringCallback(const std_msgs::String::ConstPtr& msg) {
     pub.publish(upper_msg);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     ros::init(argc, argv, "string_converter");
     ros::NodeHandle nh;
     ros::Subscriber sub = nh.subscribe("input_topic", 1000, stringCallback);
@@ -25,5 +25,3 @@ int main(int argc, char **argv) {
 大家参考一下即可，其实主要实现是在订阅方而不是发布哦。
 
 发布方大家就自己去搞搞吧
-
-
