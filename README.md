@@ -46,8 +46,6 @@ ROS系统：ros_noetic
 
 2. Rm_control的开源说明  https://rm-control-docs.netlify.app/en/ 
 
-
-
 3. GDUT_ROBOCON开源仓库 https://github.com/gdut-robocon
 
 大家应该掌握的程度：
@@ -67,5 +65,17 @@ https://www.bilibili.com/video/BV1iW4y1K7LN/?spm_id_from=333.337.search-card.all
 3. CMake学习 
 
 https://zhuanlan.zhihu.com/p/500002865
+
+
+
+Github：
+
+[Git以及GithubDesktop配置ssh访问/下载/上传 详细步骤_github desktop ssh_Frost_216的博客-CSDN博客](https://blog.csdn.net/Frost216/article/details/121106062)
+
+
+
+https://www.bilibili.com/video/BV13o4y1B7X8/?spm_id_from=333.999.0.0&vd_source=809a8e4a3a25a8809f443b4da653e707
+
+
 
 接下来会根据大家项目课的要求开设课程，大家做好准备。
