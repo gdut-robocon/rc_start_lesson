@@ -21,6 +21,7 @@
 
 int main(int argc,char *argv[])
 {
+    setlocale(LC_ALL,"");
     //初始化ROS节点
     ros::init(argc,argv,"yaml_publisher");
     //创建ROS节点句柄
