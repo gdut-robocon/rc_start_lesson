@@ -1,0 +1,10 @@
+<launch>
+    <!--rosparam使用：操作参数服务器数据-->
+    <!--格式1 launch下，node外-->
+    <!--加载参数-->
+    <rosparam command="load" file="$(find plumbing_param)/launch/my_yaml.yaml" />
+    <!--导出参数-->
+
+    <!--格式2 node下-->
+
+</launch>
