@@ -15,8 +15,8 @@ int main(int argc, char *argv[])
     ROS_INFO("客户端已经启动...");
 
     add_two_ints::AddInts ai;
-    ai.request.a = 12;
-    ai.request.b = 34;
+    ai.request.a = atoi(argv[1]);
+    ai.request.b = atoi(argv[2]);
 
     bool flag = client.call(ai);
 
