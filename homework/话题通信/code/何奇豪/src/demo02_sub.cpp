@@ -29,7 +29,7 @@ int main(int argc, char  *argv[])
     ros::Subscriber sub = string_converter.subscribe<std_msgs::String>("input_topic",10,doMsg);
     //5.处理订阅的消息(回调函数)
 
-    //     6.设置循环调用回调函数
+    //6.设置循环调用回调函数
     ros::spin();//循环读取接收的数据，并调用回调函数处理
 
     return 0;
