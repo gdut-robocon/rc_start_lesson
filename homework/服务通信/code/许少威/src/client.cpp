@@ -6,6 +6,13 @@ int main(int argc, char *argv[])
 {
     setlocale(LC_ALL,"");
 
+    if (argc != 3)
+    {
+        ROS_INFO("传入参数不对！");
+        return 1;
+    }
+    
+
     ros::init(argc,argv,"add_two_ints_client");
 
     ros::NodeHandle nh;
