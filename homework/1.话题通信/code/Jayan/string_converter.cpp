@@ -2,9 +2,11 @@
 #include <std_msgs/String.h>
 #include <string>
 /*
-负责订阅发布的小写字母
-通过函数转换成大写字母
-发布回大写字符
+节点名：string_converter
+
+此节点订阅名为“input_topic”的话题
+当它收到来自“input_topic”的消息时，它将打印该消息到控制台，并将该消息转换为大写字母字符串。
+然后，它将发布这个大写字母字符串到名为“output_topic”的话题上。
 */
 static ros::Publisher pub;
 void inputCallback(const std_msgs::String::ConstPtr& msg)
