@@ -6,5 +6,6 @@
     <!--导出参数-->
 
     <!--格式2 node下-->
-
+    <node pkg = "plumbing_param" type = "demo01_pub" name = "yaml_publisher" output = "screen" />
+    <node pkg = "plumbing_param" type = "demo02_sub" name = "yaml_subscriber" output = "screen" />
 </launch>

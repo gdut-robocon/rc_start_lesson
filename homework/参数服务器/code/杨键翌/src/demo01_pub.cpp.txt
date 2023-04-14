@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         //调试
         ROS_INFO("发布的数据是：%s",my_param.data.c_str());
         rate.sleep();
-        ros::Duration(3).sleep();
+        //ros::Duration(3).sleep();
         ros::spinOnce();
     }
 
