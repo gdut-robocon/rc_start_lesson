@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     bool result = nh.getParamCached("yaml_param",yaml_param);
     if(result)
     {
-        ROS_INFO("接收到的信息是： %s",yaml_param);
+        ROS_INFO("接收到的信息是： %s",yaml_param.c_str());
     }else{
         ROS_INFO("被查询的变量不存在");
     }

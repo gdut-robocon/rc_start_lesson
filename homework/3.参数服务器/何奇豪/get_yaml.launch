@@ -1,0 +1,3 @@
+<launch>
+    <rosparam command="load" file="$(find plumbing_param_server)/launch/my_yaml.yaml"/>
+</launch>

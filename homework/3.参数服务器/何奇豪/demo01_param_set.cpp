@@ -28,10 +28,10 @@ int main(int argc,char *argv[])
     ros::NodeHandle nh;
     //读取参数
     std::string my_param;
-    bool result = nh.getParam("/my_yaml.yaml/my_param",my_param);
+    bool result = nh.getParam("my_param",my_param);
     if(result)
     {
-        ROS_INFO("读取到的信息是：%s",my_param);
+        ROS_INFO("读取到的信息是：%s",my_param.c_str());
     }else{
         ROS_INFO("读取失败！");
     }
