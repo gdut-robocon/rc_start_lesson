@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="hw3" type="demo01_param_set" name="set" output="screen" />
+    <node pkg="hw3" type="demo02_param_get" name="get" output="screen" />
+    <node pkg="hw3" type="demo03_param_del" name="del" output="screen" />
+</launch>

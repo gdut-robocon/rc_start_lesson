@@ -40,16 +40,8 @@ int main(int argc,char *argv[])
     nh.setParam("yaml_param",my_param);
     
     /*方案2：ros::param
-    ros::param::set("type_param","xiaoBai");
-    ros::param::set("radius_param",0.15);
+    ros::param::set("yaml_param",my_param);
     */
     
-    /*参数改------------------------------(与增同理)
-    方案1：nh
-    nh.setParam("radius",0.2);
-    方案2：ros::param
-    ros::param::set("radius_param",0.25);
-    */
-
     return 0;
 }
