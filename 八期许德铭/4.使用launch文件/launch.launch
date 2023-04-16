@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="参数服务器" type="yaml_publisher" name="参数发布方" output="screen" />
+    <node pkg="参数服务器" type="yaml_subscriber" name="参数订阅方" output="screen"/>
+    
+</launch>
