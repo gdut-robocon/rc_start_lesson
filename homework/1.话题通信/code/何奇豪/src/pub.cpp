@@ -8,16 +8,12 @@
 int main(int argc, char *argv[])
 {
     /* 
-        话题名称：input_topic
-        话题内容：output_topic
-        内容输出将小写转化为大写，利用toupper函数
-        消息类型：std_msgs::string
-        节点名称：string_converter
+        用来发布input信息
     */
 
     setlocale(LC_ALL,"");
     //初始化节点
-    ros::init(argc,argv,"string_converter");
+    ros::init(argc,argv,"input_topic");
     //创建节点
     ros::NodeHandle string_convert;
     //创建发布者对象
@@ -32,13 +28,6 @@ int main(int argc, char *argv[])
  
 
     while(ros::ok()){
-     
-        
-        //拼接字符串和编号
-        // std::stringstream ss;
-        // ss << "hello--->" << cnt;
-        // s = ss.str();
-        //发布数据
         pub.publish(messages);
         //调试
         ROS_INFO("发布的数据是：%s",messages.data.c_str());
