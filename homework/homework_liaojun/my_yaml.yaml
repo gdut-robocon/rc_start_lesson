@@ -1,0 +1,10 @@
+#include<ros/ros.h>
+int main(int argc, char  *argv[])
+{
+    setlocale(LC_ALL,"")
+    ros::init(argc,argv,"yaml_server");
+    ros::NodeHandle nh;
+    nh.setParam("my_param","abcde");
+    ROS_INFO("参数设置成功！");
+    return 0;
+}
