@@ -9,3 +9,4 @@
 https://book.openmv.cc/
 
 想进一步学习的同学可以去了解一下opencv库（这才是以后常用的）
+https://opencv.apachecn.org/#/
