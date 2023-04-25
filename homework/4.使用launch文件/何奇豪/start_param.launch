@@ -1,0 +1,5 @@
+<launch>
+    <rosparam command="load" file="$(find plumbing_param_server)/launch/my_yaml.yaml"/>
+    <node pkg="plumbing_param_server" type="demo01_param_set" name="set" output="screen" />
+    <node pkg="plumbing_param_server" type="demo02_param_get" name="get" output="screen" />   
+</launch>
