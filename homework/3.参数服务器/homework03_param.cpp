@@ -5,7 +5,7 @@
 
 int main(int argc, char  *argv[])
 {
-    ros::init(argc,argv,"param_cpp");
+    ros::init(argc,argv,"yaml_publisher");
     setlocale(LC_ALL,"");
     ros::NodeHandle nh;  
     ros::Publisher pub = nh.advertise<std_msgs::String>("yaml_param", 10);
