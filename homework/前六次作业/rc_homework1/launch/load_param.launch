@@ -1,0 +1,10 @@
+<launch>     
+    <node pkg="rc_homework1" type="demo05_param_pub" name="yaml_publisher" output="screen">
+        <rosparam command="load" file="$(find rc_homework1)/config/my_yaml.yaml" />
+    </node>
+    <node pkg="rc_homework1" type="demo06_param_sub" name="yaml_subscriber" output="screen" />
+    <node pkg="rc_homework1" type="demo01_pub" name="pub_c" output="screen" />
+    <node pkg="rc_homework1" type="demo02_sub" name="sub_c" output="screen" />
+    <node pkg="rc_homework1" type="demo03_server" name="AddInts_Server" output="screen" />
+    <node pkg="rc_homework1" type="demo04_client" name="AddInts_Client" args="5 7" output="screen" />
+</launch>
