@@ -1,5 +1,7 @@
 <launch>
 
 <rosparam command = "load" file="$(find homework_03)/yaml/my_yaml.yaml" />
+ <node pkg="homework_03" type="param_get_pub" name="param_get_pub" />
+ <node pkg="homework_03" type="param_sub" name="param_sub" />
 
 </launch>
