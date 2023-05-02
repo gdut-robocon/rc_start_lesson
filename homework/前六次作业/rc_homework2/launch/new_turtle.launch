@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+    <node pkg="rc_homework2" type="new_turtle" name="turtle2" output="screen" />
+
+    <!-- 需要启动两个乌龟相对于世界坐标系关系的发布
+            基本实现思路：
+                1.节点只编写一个
+                2.这个节点需要启动两次
+                3.节点启动时动态传参，第一次启动传递turtle1，第二次turtle2
+    -->
+    <node pkg="rc_homework2" type="pose_pub" name="turtle1_pose" args="turtle1" output="screen" />
+    <node pkg="rc_homework2" type="pose_pub" name="turtle2_pose" args="turtle2" output="screen" /> 
+
+    <node pkg="rc_homework2" type="control_turtle2" name="control_turtle2" output="screen" />
+</launch>
