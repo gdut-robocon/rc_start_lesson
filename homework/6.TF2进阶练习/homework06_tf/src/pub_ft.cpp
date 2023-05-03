@@ -4,69 +4,68 @@
 #include "geometry_msgs/TransformStamped.h"
 #include "tf2/LinearMath/Quaternion.h"
 
-/*
-   ·¢²¼·½:ĞèÒª¶©ÔÄÎÚ¹êµÄÎ»×ËĞÅÏ¢,×ª»»³ÉÏà¶ÔÓÚ´°ÌåµÄ×ø±ê¹ØÏµ,²¢·¢²¼
-   ×¼±¸:
-      »°Ìâ:   /turtle1/pose
-      ÏûÏ¢:   turtlesim/Pose
+/* 
+   å‘å¸ƒæ–¹:éœ€è¦è®¢é˜…ä¹Œé¾Ÿçš„ä½å§¿ä¿¡æ¯,è½¬æ¢æˆç›¸å¯¹äºçª—ä½“çš„åæ ‡å…³ç³»,å¹¶å‘å¸ƒ
+   å‡†å¤‡:
+      è¯é¢˜:   /turtle1/pose
+      æ¶ˆæ¯:   turtlesim/Pose
 
-       Á÷³Ì:
-       1.°üº¬Í·ÎÄ¼ş
-       2.ÉèÖÃ±àÂë,³õÊ¼»¯,NodeHandle;
-       3.´´½¨¶©ÔÄ¶ÔÏó,¶©ÔÄ  /turtle1/pose
-       4.»Øµ÷º¯Êı´¦Àí¶©ÔÄµÄÏûÏ¢:½«Î»×ËĞÅÏ¢×ª»»³É×ø±êÏà¶Ô¹ØÏµ²¢·¢²¼(¹Ø×¢)
+       æµç¨‹:
+       1.åŒ…å«å¤´æ–‡ä»¶
+       2.è®¾ç½®ç¼–ç ,åˆå§‹åŒ–,NodeHandle;
+       3.åˆ›å»ºè®¢é˜…å¯¹è±¡,è®¢é˜…  /turtle1/pose
+       4.å›è°ƒå‡½æ•°å¤„ç†è®¢é˜…çš„æ¶ˆæ¯:å°†ä½å§¿ä¿¡æ¯è½¬æ¢æˆåæ ‡ç›¸å¯¹å…³ç³»å¹¶å‘å¸ƒ(å…³æ³¨)
        5.spin()
  */
- //ÉùÃ÷±äÁ¿´«Èë²ÎÊı
+//å£°æ˜å˜é‡ä¼ å…¥å‚æ•°
 static std::string turtle_name;
 
-void doPose(const turtlesim::Pose::ConstPtr& pose) {
-    //»ñÈ¡Î»×ËĞÅÏ¢,×ª»»³ÉÏà¶Ô¹ØÏµ,²¢·¢²¼
-    //´´½¨·¢²¼¶ÔÏó
-    static tf2_ros::TransformBroadcaster pub;
-    //×éÖ¯±»·¢²¼µÄÏûÏ¢
-    geometry_msgs::TransformStamped ts;
-    ts.child_frame_id = turtle_name;
-    ts.header.frame_id = "world";
-    ts.header.stamp = ros::Time::now();
-    //×ø±êÏµÆ«ÒÆÁ¿  ÎÚ¹êÏà¶ÔÓÚÊÀ½çµÄ×ø±ê
-    ts.transform.translation.x = pose->x;
-    ts.transform.translation.y = pose->y;
-    ts.transform.translation.z = 0;  //Æ½Ãæ×ø±êÏµÎŞzÖá
-    //×ø±êÏµËÄÔªÊı
-         /*
-            Î»×ËĞÅÏ¢ÖĞÃ»ÓĞËÄÔªÊı,µ«ÊÇÓĞ¸öÆ«º½½Ç¶È,ÓÖÒÑÖªÎÚ¹êÊÇ2D,Ã»ÓĞ·­¹öºÍ¸©Ñö½Ç¶È,ËùÒÔ¿ÉÒÔµÃ³öÎÚ¹ê
-            µÄÅ·À­½Ç: 0 0 theta
-          */
-          //½«Å·À­½Ç×ª»»ÎªËÄÔªÊı
-    tf2::Quaternion qtn;
-    qtn.setRPY(0, 0, pose->theta);
-    //ÉèÖÃËÄÔªÊı
-    ts.transform.rotation.x = qtn.getX();
-    ts.transform.rotation.y = qtn.getY();
-    ts.transform.rotation.z = qtn.getZ();
-    ts.transform.rotation.w = qtn.getW();
-    //·¢²¼
-    pub.sendTransform(ts);
+void doPose(const turtlesim::Pose::ConstPtr& pose){
+//è·å–ä½å§¿ä¿¡æ¯,è½¬æ¢æˆç›¸å¯¹å…³ç³»,å¹¶å‘å¸ƒ
+//åˆ›å»ºå‘å¸ƒå¯¹è±¡
+static tf2_ros::TransformBroadcaster pub;
+//ç»„ç»‡è¢«å‘å¸ƒçš„æ¶ˆæ¯
+geometry_msgs::TransformStamped ts;
+ts.child_frame_id=turtle_name;
+ts.header.frame_id="world";
+ts.header.stamp=ros::Time::now();
+//åæ ‡ç³»åç§»é‡  ä¹Œé¾Ÿç›¸å¯¹äºä¸–ç•Œçš„åæ ‡
+ts.transform.translation.x=pose->x;
+ts.transform.translation.y=pose->y;
+ts.transform.translation.z=0;  //å¹³é¢åæ ‡ç³»æ— zè½´
+//åæ ‡ç³»å››å…ƒæ•°
+     /* 
+        ä½å§¿ä¿¡æ¯ä¸­æ²¡æœ‰å››å…ƒæ•°,ä½†æ˜¯æœ‰ä¸ªåèˆªè§’åº¦,åˆå·²çŸ¥ä¹Œé¾Ÿæ˜¯2D,æ²¡æœ‰ç¿»æ»šå’Œä¿¯ä»°è§’åº¦,æ‰€ä»¥å¯ä»¥å¾—å‡ºä¹Œé¾Ÿ
+        çš„æ¬§æ‹‰è§’: 0 0 theta
+      */
+     //å°†æ¬§æ‹‰è§’è½¬æ¢ä¸ºå››å…ƒæ•°
+     tf2::Quaternion qtn;
+     qtn.setRPY(0,0,pose->theta);
+     //è®¾ç½®å››å…ƒæ•°
+     ts.transform.rotation.x=qtn.getX();
+     ts.transform.rotation.y=qtn.getY();
+     ts.transform.rotation.z=qtn.getZ();
+     ts.transform.rotation.w=qtn.getW();
+     //å‘å¸ƒ
+     pub.sendTransform(ts);
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-    //ÉèÖÃ±àÂë,³õÊ¼»¯,NodeHandle
-    setlocale(LC_ALL, "");
-    ros::init(argc, argv, "dynamic_pub");
-    ros::NodeHandle nh;
-    // Í¨¹ı´«²ÎÃüÃû
-    if (argc != 2) {
-        ROS_ERROR("Çë´«ÈëÒ»¸ö²ÎÊı!");
-        return 1;
-    }
-    else {
-        turtle_name = argv[1];
-    }
-    //´´½¨¶©ÔÄ¶ÔÏó,¶©ÔÄ»°ÌâÃû³Æ´Ó²ÎÊı´«À´
-    ros::Subscriber sub = nh.subscribe(turtle_name + "/pose", 100, doPose);
-    //»Øµ÷º¯Êı
-    ros::spin();
+    //è®¾ç½®ç¼–ç ,åˆå§‹åŒ–,NodeHandle
+        setlocale(LC_ALL,"");
+        ros::init(argc,argv,"dynamic_pub");
+        ros::NodeHandle nh;
+        // é€šè¿‡ä¼ å‚å‘½å
+        if(argc!=2){
+          ROS_ERROR("è¯·ä¼ å…¥ä¸€ä¸ªå‚æ•°!");
+          return 1;
+        }else{
+         turtle_name=argv[1];
+        }
+        //åˆ›å»ºè®¢é˜…å¯¹è±¡,è®¢é˜…è¯é¢˜åç§°ä»å‚æ•°ä¼ æ¥
+        ros::Subscriber sub=nh.subscribe(turtle_name+"/pose",100,doPose);
+        //å›è°ƒå‡½æ•°
+        ros::spin();
     return 0;
 }

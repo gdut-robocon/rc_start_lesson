@@ -6,51 +6,51 @@
 #include "geometry_msgs/TransformStamped.h"
 #include "geometry_msgs/Twist.h"
 
-/*
-       ĞèÇó1: »»Ëã³ö turtle1 Ïà¶ÔÓÚ turtle2 µÄ¹ØÏµ
-       ĞèÇó2: ¼ÆËã½ÇËÙ¶ÈºÍÏßËÙ¶È²¢·¢²¼
+/* 
+       éœ€æ±‚1: æ¢ç®—å‡º turtle1 ç›¸å¯¹äº turtle2 çš„å…³ç³»
+       éœ€æ±‚2: è®¡ç®—è§’é€Ÿåº¦å’Œçº¿é€Ÿåº¦å¹¶å‘å¸ƒ
  */
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-    //½â¾öÖĞÎÄÂÒÂë  ³õÊ¼»¯  NodeHandle
-    setlocale(LC_ALL, "");
-    ros::init(argc, argv, "follow");
+    //è§£å†³ä¸­æ–‡ä¹±ç   åˆå§‹åŒ–  NodeHandle
+    setlocale(LC_ALL,"");
+    ros::init(argc,argv,"follow");
     ros::NodeHandle nh;
-    //´´½¨buffer»º´æ,´´½¨½«¶©ÔÄµÄÊı¾İ´«Èëbuffer»º´æ
+    //åˆ›å»ºbufferç¼“å­˜,åˆ›å»ºå°†è®¢é˜…çš„æ•°æ®ä¼ å…¥bufferç¼“å­˜
     tf2_ros::Buffer buffer;
     tf2_ros::TransformListener lister(buffer);
 
-    //±àÂë½âÎöÂß¼­
-    //´´½¨·¢²¼¶ÔÏó
-    ros::Publisher pub = nh.advertise<geometry_msgs::Twist>("/turtle2/cmd_vel", 10);
+    //ç¼–ç è§£æé€»è¾‘
+    //åˆ›å»ºå‘å¸ƒå¯¹è±¡
+    ros::Publisher pub=nh.advertise<geometry_msgs::Twist>("/turtle2/cmd_vel",10);
     ros::Rate rate(10);
-    while (ros::ok()) {
-
-        try
-        {
-            //¼ÆËãÁ½ÎÚ¹êµÄÏà¶Ô¹ØÏµ
-            geometry_msgs::TransformStamped T1toT2 = buffer.lookupTransform("turtle2", "turtle1", ros::Time(0));
-            //¸ù¾İÏà¶ÔÎ»ÖÃ¼ÆËã²¢×éÖ¯ËÙ¶ÈÏûÏ¢
-            geometry_msgs::Twist twist;
-            //z = ÏµÊı * ·´ÕıÇĞ(¶Ô±ß,ÁÚ±ß)
-            twist.angular.z = 4 * atan2(T1toT2.transform.translation.y, T1toT2.transform.translation.x);
-            // x = ÏµÊı * ¿ª·½(y^2 + x^2)
-            twist.linear.x = 0.5 * sqrt(pow(T1toT2.transform.translation.x, 2) + pow(T1toT2.transform.translation.y, 2));
-            //C.·¢²¼
-            pub.publish(twist);
-        }
-        catch (const std::exception& e)
-        {
-            ROS_INFO("´íÎóÌáÊ¾: %s", e.what());
-        }
-
+    while(ros::ok()){
+  
+  try
+  {
+  //è®¡ç®—ä¸¤ä¹Œé¾Ÿçš„ç›¸å¯¹å…³ç³»
+  geometry_msgs::TransformStamped T1toT2=buffer.lookupTransform("turtle2","turtle1",ros::Time(0));
+    //æ ¹æ®ç›¸å¯¹ä½ç½®è®¡ç®—å¹¶ç»„ç»‡é€Ÿåº¦æ¶ˆæ¯
+    geometry_msgs::Twist twist;
+    //z = ç³»æ•° * åæ­£åˆ‡(å¯¹è¾¹,é‚»è¾¹)
+    twist.angular.z=4 * atan2(T1toT2.transform.translation.y,T1toT2.transform.translation.x);
+    // x = ç³»æ•° * å¼€æ–¹(y^2 + x^2)
+    twist.linear.x=0.5*sqrt(pow(T1toT2.transform.translation.x,2)+pow(T1toT2.transform.translation.y,2));
+         //C.å‘å¸ƒ
+         pub.publish(twist);
+  }
+  catch(const std::exception& e)
+  {
+   ROS_INFO("é”™è¯¯æç¤º: %s",e.what());
+  }
+  
         rate.sleep();
         ros::spinOnce();
 
     }
-
-
+    
+    
     return 0;
 }
 
