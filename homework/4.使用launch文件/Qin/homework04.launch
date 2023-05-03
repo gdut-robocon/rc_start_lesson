@@ -1,0 +1,7 @@
+<launch>
+
+<rosparam command="load" file="$(find homework03)/yaml/my_yaml.yaml" />
+<node  pkg="homework03" type="pub" name="yaml_publister" output="screen" />
+<node  pkg="homework03" type="sub" name="yaml_subscriber" output="screen" />
+
+</launch>
