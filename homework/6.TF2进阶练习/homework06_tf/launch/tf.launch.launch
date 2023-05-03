@@ -1,0 +1,16 @@
+<launch>
+ <!-- 乌龟生成节点 及乌龟控制节点-->
+ <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+ <node pkg="turtlesim" type="turtle_teleop_key" name="key" output="screen" />
+ <node pkg="homework06_tf" type="create_new_turtle" name="turtle2" args="turtle2" output="screen" />
+
+<!-- 坐标发布节点
+   根据动态传参,改变两乌龟的名字来实现坐标发布
+ -->
+<node pkg="homework06_tf" type="pub_tf" name="tf_turtle1" args="turtle1" output="screen" />
+<node pkg="homework06_tf" type="pub_tf" name="tf_turtle2" args="turtle2" output="screen" />
+
+<!-- 乌龟跟随节点 -->
+<node pkg="homework06_tf" type="control_turtle2" name="control_turtle2" output="screen" />
+
+</launch>
