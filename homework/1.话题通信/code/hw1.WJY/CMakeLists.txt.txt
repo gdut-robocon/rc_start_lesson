@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(string_converter)
+
+## Find catkin and any catkin packages
+find_package(catkin REQUIRED COMPONENTS roscpp std_msgs)
+
+## Declare a catkin package
+catkin_package()
+
+## Build the subscriber node
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(string_converter_subscriber src/subscriber_node.cpp)
+target_link_libraries(string_converter_subscriber ${catkin_LIBRARIES})
+
+## Build the publisher node
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(string_converter_publisher src/publisher_node.cpp)
+target_link_libraries(string_converter_publisher ${catkin_LIBRARIES})
