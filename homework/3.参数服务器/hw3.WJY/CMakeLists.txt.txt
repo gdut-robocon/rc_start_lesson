@@ -1,0 +1,5 @@
+add_executable(yaml_publisher src/yaml_publisher.cpp)
+target_link_libraries(yaml_publisher ${catkin_LIBRARIES} yaml-cpp)
+
+add_executable(yaml_subscriber src/yaml_subscriber.cpp)
+target_link_libraries(yaml_subscriber ${catkin_LIBRARIES})
