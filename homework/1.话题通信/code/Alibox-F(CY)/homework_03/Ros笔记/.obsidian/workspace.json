@@ -1,0 +1,204 @@
+{
+  "main": {
+    "id": "4e0e3994f73f2716",
+    "type": "split",
+    "children": [
+      {
+        "id": "73dd0ef6e5223718",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e4971ad78b3fd7cf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ros学习及linux初探.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9fd4b15ac528f2a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Markdown语法.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "51b753912fd064f1",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "快捷键.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "35b6663051406c72",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ros通讯进阶.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "55ddfa14590aab18",
+    "type": "split",
+    "children": [
+      {
+        "id": "ad742dfe9a0883c5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5ea61d7d46fba0d4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2d26688fdfe054ac",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#liinux",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "f01640905ba7574d",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "e74a9f9eec0e465a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bbbb45b7221f8c15",
+    "type": "split",
+    "children": [
+      {
+        "id": "20e1b823358d28cc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "57d9f84a729babcd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ros通讯进阶.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8122fbf87012efa1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ros通讯进阶.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "780005bdada71838",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "862494e491ddfe85",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ros通讯进阶.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "workspaces:管理工作区布局": false
+    }
+  },
+  "active": "35b6663051406c72",
+  "lastOpenFiles": [
+    "快捷键.md",
+    "Markdown语法.md",
+    "ros学习及linux初探.md",
+    "ros通讯进阶.md",
+    "linux使用小技巧.md",
+    "未命名.canvas"
+  ]
+}
