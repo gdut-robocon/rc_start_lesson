@@ -1,0 +1,10 @@
+<launch>
+  <param name="my_param" type="string" value="$(find my_package)/config/my_yaml.yaml" />
+  <!-- 从参数服务器中读取my_param参数，该参数的值为my_package包中config文件夹下的my_yaml.yaml文件的路径 -->
+
+  <node name="yaml_publisher" type="yaml_publisher" output="screen" />
+  <!-- 启动yaml_publisher节点 -->
+
+  <node name="yaml_subscriber" type="yaml_subscriber" output="screen" />
+  <!-- 启动yaml_subscriber节点 -->
+</launch>
