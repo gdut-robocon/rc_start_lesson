@@ -1,0 +1,10 @@
+<launch>
+    <rosparam command = "load" file = "$(find homework04_05)/src/my_yaml.yaml" />
+
+    <node pkg = "homework04_05" type = "yaml_pub" name = "jdfx" output = "screen" />
+      <!-- <rosparam command = "load" file = "$(find homework04_05)/src/my_yaml.yaml" />
+    </node> -->
+
+    <node pkg = "homework04_05" type = "yaml_sub" name = "zwt" output = "screen" />
+
+</launch>
