@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="demo01" type="output_topic" name="output_topic" output="screen"/>
+  <node pkg="demo01" type="string_converter" name="string_converter" output="screen"/>  
+  <node pkg="demo01" type="server" name="server" output="screen"/>  
+  <node pkg="demo01" type="yaml_publisher" name="yaml_publisher" output="screen"/>
+  <pkg="demo01" type="yaml_subscriber" name="yaml_subscriber" output="screen"/>
+</launch>
