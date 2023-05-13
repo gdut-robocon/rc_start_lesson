@@ -11,7 +11,7 @@
 void doMsg(const std_msgs::String::ConstPtr &msg)
 {
     //实例化ros句柄
-    ros::NodeHandle nh_big;
+    static ros::NodeHandle nh_big;
     //实例化话题对象
     ros::Publisher pub_big = nh_big.advertise<std_msgs::String>("ouput_topic",100);
     //设置发布信息
@@ -20,7 +20,7 @@ void doMsg(const std_msgs::String::ConstPtr &msg)
     std::transform(small_msg.begin(), small_msg.end(), small_msg.begin(), ::toupper);
     big_msg.data = small_msg;
     //发布信息
-    ROS_INFO("已收到消息，收到的消息为：%s",big_msg.data.c_str());
+    //ROS_INFO("已收到消息，收到的消息为：%s",big_msg.data.c_str());
     pub_big.publish(big_msg);
     
 }
