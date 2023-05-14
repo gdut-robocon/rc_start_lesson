@@ -1,0 +1,12 @@
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_rosnoetic1_virtualbox__46879: http://rosnoetic1-VirtualBox:46879/
+rosversion: '1.16.0
+
+  '
+run_id: b2c3ec5a-f206-11ed-8d43-5130ff9d8ec9
+my_param: ppp
+type_param: lll

@@ -1,0 +1,27 @@
+ #include  "ros/ros.h"
+ #include "std_msgs/String.h"
+ #include<sstream>
+ #include<iostream>
+ 
+
+ int main(int argc, char *argv[])
+{  setlocale(LC_ALL,"");
+   ros::init(argc,argv,"yaml_publisher");
+   ros::NodeHandle nh; 
+   ros::Publisher pub = nh.advertise<std_msgs::String>("yaml_param",100);
+   std::string msg = "xxn";
+   std_msgs::String xiaoming;
+
+    nh.getParam("my_param",msg);
+    xiaoming.data = msg;
+    ros::Rate rate(5);
+   while(ros::ok())
+   { 
+    
+     pub.publish(xiaoming);
+     ROS_INFO("发布的数据是: %s",xiaoming.data.c_str());
+    rate.sleep();
+    ros::spinOnce();
+   }
+     return 0;
+}

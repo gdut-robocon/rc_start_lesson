@@ -1,0 +1,18 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+
+void doMsg(const std_msgs::String::ConstPtr &xiaoming_p)
+{
+
+    ROS_INFO("订阅的数据:%s", xiaoming_p->data.c_str());
+}
+
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL, "");
+    ros::init(argc, argv, "yaml_subcriber");
+    ros::NodeHandle nh;
+    ros::Subscriber sub = nh.subscribe("yaml_param", 100, doMsg);
+    ros::spin();
+    return 0;
+}
