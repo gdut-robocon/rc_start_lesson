@@ -1,0 +1,7 @@
+<launch>
+    
+    <rosparam file="$(find plumbing_param_server)/launch/yyy.yaml" command="load"/>
+    <node pkg="plumbing_param_server" type="yaml_publisher" name="yaml_publisher" output="screen"/>
+    <node pkg="plumbing_param_server" type="yaml_subcriber" name="yaml_subcriber" output="screen" />
+    
+</launch>
