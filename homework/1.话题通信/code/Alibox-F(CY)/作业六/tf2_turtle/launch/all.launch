@@ -1,0 +1,15 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+    <node pkg="turtlesim" type="turtle_teleop_key" name="key" output="screen"/>  
+    <!-- 新乌龟  -->
+    <node pkg="tf2_turtle" type="turtle_my_two" name="turtle2" output="screen" /> 
+
+    <!-- 设置两只龟对世界坐标系的关系发布 -->
+    <!-- 节点启动两次，动态传参传入/turtle1/pose以及/turtle2/pose -->
+    <node pkg="tf2_turtle" type="two_turtle_pub" name="pub1" args="turtle1" output="screen" /> 
+    <node pkg="tf2_turtle" type="two_turtle_pub" name="pub2" args="turtle2" output="screen" /> 
+
+    <!-- 多坐标变换，获取turtle1和turtle2的相对关系 -->
+    <node pkg="tf2_turtle" type="two_turtle_sub" name="auto_cmd" output="screen" />
+
+</launch>
