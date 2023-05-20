@@ -1,0 +1,32 @@
+#include <ros/ros.h>
+#include <tf/transform_broadcaster.h>
+#include <geometry_msgs/TransformStamped.h>
+#include <my_turtlebot_msgs/ComputeTF.h>
+
+bool computeTF(my_turtlebot_msgs::ComputeTF::Request &req,
+               my_turtlebot_msgs::ComputeTF::Response &res)
+{
+  // 计算相对于 "turtle1" 的 TF 变换
+  geometry_msgs::TransformStamped transform;
+  transform.header.frame_id = "turtle1";
+  transform.child_frame_id = "target";
+  transform.transform.translation.x = req.x;
+  transform.transform.translation.y = req.y;
+  transform.transform.rotation.w = 1.0; // 不旋转
+  res.transform = transform;
+
+  return true;
+}
+
+int main(int argc, char **argv)
+{
+  ros::init(argc, argv, "compute_tf_server");
+  ros::NodeHandle nh;
+
+  ros::ServiceServer service = nh.advertiseService("compute_tf", computeTF);
+  ROS_INFO("Ready to compute TF.");
+
+  ros::spin();
+
+  return 0;
+}

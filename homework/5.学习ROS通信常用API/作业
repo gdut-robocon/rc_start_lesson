@@ -1,0 +1,46 @@
+rosiinit (初始化函数)无返回值 langc:封装实参个数1n+1)
+2.argv:封装参数的数组
+3、name:为结点命有
+4.options:节总启动选项使用:
+1argc 与argv的使用
+用于设置全局参数，给节点重命名 rosrunpkg 节点_length;三2传参
+传给argv、
+2.options集用.
+使得可重复肩功同一节点
+ros::init_optioms::AnonymousName
+启随机在节点名后加随机数字
+1时间接cub
+设
+os::NodeHandle nh;创建发布者对象 std:stringstream ss 
+模板:被发布的消息的类型发布的数据msgdata=ssstrl参数:ros::Publisher pub=nh.advertise<std_msgsstring
+小话题名称 pub. pu blish tmsg );(“fang”, 1o. ture 
+2队列长度
+3.latch(可选)if设为true，会保存发布方最后一条个消息
+并且新的订阅者连接发布方时，会发给
+订阅者
+使用:
+静态地图发布
+回调函数
+ros.:spinone:仅执行同1团函数一次 ros::spim:循环执行目调函数
+时间AP1
+ros::Node Handlenh;必倾:否则会导致时间AP1i用失败
+(在NodeHandle会被
+获取当前时刻
+ros::Time right_now=ros::Time:now pi当前时刻:now被调用执行的那一刻 oltiga2参考系:1970年01月01日:00:00100
+now函数会将当前时刻封装并返回 right-now.tosec()，转换成秒数 right-now.tosec();断去的时间总长
+整型
+没置指定时刻
+10S::Time t:(20,12345)
+浮点型
+ros::Puration duli) du.sleepi):
+时间运算
+ros::Time begn = ros::Time ::now( ); ros::Duration oul(5); ros:: Time stop=begin tdul;
+
+ros::Time begh→时刻对象 ros::Duratim du1:持续时间对象
+时刻与持续时间可加减时刻“之间反可相减
+定时器:
+ros::Timer=nh.create Timer(ros::Duration(1),cb);
+timer 时间间隔 回调函数 
+ros:spmi );
+
+ros::shutdownl1;关闭节点
