@@ -1,0 +1,15 @@
+<launch>
+
+     <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+     <!-- 生成第一只乌龟 -->
+     <node pkg="tf04_test" type="test01_new_turtle" name="turtle2" output="screen" />
+     <!-- 生成第二只乌龟 -->
+     <node pkg="turtlesim" type="turtle_teleop_key" name="key" output="screen" />
+     <!-- 调用键盘控制第一只乌龟移动 -->
+     <node pkg="tf04_test" type="test02_pub_turtle" name="pub1" args="turtle1" output="screen"/>
+     <node pkg="tf04_test" type="test02_pub_turtle" name="pub2" args="turtle2" output="screen"/>
+     <!-- 实现两个乌龟坐标系的动态传参，进行坐标转换 -->
+     <node pkg="tf04_test" type="test03_control_turtle2" name="control" output="screen"/>
+
+
+</launch>
