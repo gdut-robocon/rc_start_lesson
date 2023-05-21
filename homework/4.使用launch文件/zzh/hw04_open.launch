@@ -1,0 +1,10 @@
+<launch>
+    <!-- 读取加载my_yaml.yaml文件中设置的参数 -->
+    <rosparam file="$(find plumbing_pub_sub)/include/my_yaml.yaml" command="load" />
+    <!-- <param name="my_param" type="string" value="$(find plumbing_pub_sub)/include/my_yaml.yaml" /> -->
+
+    <!-- 启动发布节点和订阅节点 -->
+    <node pkg="plumbing_pub_sub" name="yaml_publisher" type="hw01_pub" output="screen" />
+    <node pkg="plumbing_pub_sub" name="yaml_subscriber" type="hw02_sub" output="screen" />
+
+</launch>
