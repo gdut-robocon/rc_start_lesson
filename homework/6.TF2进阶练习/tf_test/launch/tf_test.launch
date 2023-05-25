@@ -1,0 +1,14 @@
+<launch>
+    <node pkg = "turtlesim" type = "turtlesim_node" name = "turtle1" output = "screen" />
+
+    
+    <node pkg = "tf_test" type = "add_turtle" name = "tuetle2" args = "turtle2" output = "screen" />
+    
+    <node pkg = "tf_test" type = "pub_turtle" name = "pub1" args = "turtle1" output = "screen" />
+    <node pkg = "tf_test" type = "pub_turtle" name = "pub2" args = "turtle2" output = "screen" />
+
+    <node pkg = "tf_test" type = "turtle1" name = "move_turtle1" output = "screen" />
+    <node pkg = "tf_test" type = "turtle2" name = "move_turtle2" output = "screen" />
+    
+
+</launch>

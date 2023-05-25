@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="deal_yaml_param" type="yaml_publisher" name="yaml_publisher" output="screen" />
+    <rosparam command="load" file="$(find deal_yaml_param)/param/my_yaml.yaml" />
+    <node pkg="deal_yaml_param" type="yaml_subscriber" name="yaml_subscriber" output="screen" />
+</launch>
