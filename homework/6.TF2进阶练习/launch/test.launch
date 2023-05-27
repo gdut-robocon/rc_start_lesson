@@ -1,0 +1,15 @@
+<!--
+    tf2 实现小乌龟跟随案例
+-->
+<launch>
+    <!-- 启动乌龟节点与键盘控制节点 -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+    <node pkg="turtlesim" type="turtle_teleop_key" name="key_control" output="screen"/>
+    <!-- 启动创建第二只乌龟的节点 -->
+    <node pkg="tf_01" type="Test01_Create_Turtle2" name="turtle2" output="screen" />
+    <!-- 启动两个坐标发布节点 -->
+    <node pkg="tf_01" type="Test02_TF2_Caster" name="caster1" output="screen" args="turtle1" />
+    <node pkg="tf_01" type="Test02_TF2_Caster" name="caster2" output="screen" args="turtle2" />
+    <!-- 启动坐标转换节点 -->
+    <node pkg="tf_01" type="Test03_TF2_Listener" name="listener" output="screen" />
+</launch>
