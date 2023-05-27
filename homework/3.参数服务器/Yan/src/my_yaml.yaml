@@ -1,0 +1,2 @@
+# 需要加载yaml文件到参数服务器中，可以在另一个终端中输入rosparam load my_yaml.yaml命令来实现。(要cd进入该yaml文件的文件夹后才能加载成功)
+my_param: "Hello, this is a parameter from yaml file."

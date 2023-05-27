@@ -1,0 +1,132 @@
+官网API查询    http://wiki.ros.org/APIs
+一、ros初始化函数
+void init(int &argc, char **argv, const std::string& name,uint32_t options = 0);
+
+该函数可以解析并使用节点启动时传入的参数(通过参数设置节点名称、命名空间...) 
+ \param argc 参数个数
+ \param argv 参数列表
+ \param name 节点名称，需要保证其唯一性，不允许包含命名空间
+ \param options 节点启动选项，被封装进了ros::init_options（解决节点多次启动重名问题）
+
+二、话题与服务相关对象
+1.发布对象
+对象获取：Publisher advertise(const std::string& topic, uint32_t queue_size, bool latch = false)
+
+例：ros::Publisher pub = handle.advertise<std_msgs::Empty>("my_topic", 1);
+\param topic 发布消息使用的话题
+\param queue_size 等待发送给订阅者的最大消息数量
+\param latch (可选) 如果为 true,该话题发布的最后一条消息将被保存，并且后期当有订阅者连接时会将该消息发送给订阅者（避免数据丢失）
+ \return 调用成功时，会返回一个发布对象
+
+消息发布函数：template <typename M>void publish(const M& message) const
+
+2.订阅对象
+对象获取：
+Subscriber subscribe(const std::string& topic, uint32_t queue_size, void(*fp)(const boost::shared_ptr<M const>&),
+ const TransportHints& transport_hints = TransportHints())
+
+例：void callback(const std_msgs::Empty::ConstPtr& message){...}
+ros::NodeHandle nodeHandle;
+ros::Subscriber sub = nodeHandle.subscribe("my_topic", 1, callback);
+\param M [template] M 是指消息类型
+\param topic 订阅的话题
+\param queue_size 消息队列长度，超出长度时，头部的消息将被弃用
+\param fp 当订阅到一条消息时，需要执行的回调函数
+\return 调用成功时，返回一个订阅者对象，失败时，返回空对象
+
+3.服务对象获取
+ServiceServer advertiseService(const std::string& service, bool(*srv_func)(MReq&, MRes&))
+
+\param service 服务的主题名称
+\param srv_func 接收到请求时，需要处理请求的回调函数
+\return 请求成功时返回服务对象，否则返回空对象:
+
+4.客户端对象
+对象获取：ServiceClient serviceClient(const std::string& service_name, bool persistent = false, 
+const M_string& header_values = M_string())//创建一个服务客户端对象
+请求发送函数：bool call(Service& service)// 返回值为 bool 类型，true，请求处理成功，false，处理失败。
+等待服务函数1：ROSCPP_DECL bool waitForService(const std::string& service_name, ros::Duration timeout = ros::Duration(-1));
+ * ros::service::waitForService("addInts");
+ * \brief 等待服务可用，否则一致处于阻塞状态
+ * \param service_name 被"等待"的服务的话题名称
+ * \param timeout 等待最大时常，默认为 -1，可以永久等待直至节点关闭
+ * \return 成功返回 true，否则返回 false。
+等待服务函数2：bool waitForExistence(ros::Duration timeout = ros::Duration(-1));
+* \brief 等待服务可用，否则一致处于阻塞状态
+* \param timeout 等待最大时常，默认为 -1，可以永久等待直至节点关闭
+* \return 成功返回 true，否则返回 false。
+
+三、回旋函数
+1.spinOnce()仅执行一次回调
+2.2.spin()循环回调（导致后面的函数将不会执行）
+
+四、时间
+1.获取当前时刻
+ros::init(argc,argv,"hello_time");
+ros::NodeHandle nh;//必须创建句柄，否则时间没有初始化，导致后续API调用失败
+ros::Time right_now = ros::Time::now();//将当前时刻封装成对象
+ROS_INFO("当前时刻:%.2f",right_now.toSec());//获取距离 1970年01月01日 00:00:00 的秒数
+ROS_INFO("当前时刻:%d",right_now.sec);//同上，但是为整形数据
+
+2.设置指定时刻
+ros::Time someTime(100,100000000);// 参数1:秒数  参数2:纳秒
+ROS_INFO("时刻:%.2f",someTime.toSec()); //100.10
+ros::Time someTime2(100.3);//直接传入 double 类型的秒数
+ROS_INFO("时刻:%.2f",someTime2.toSec()); //100.30
+
+3.持续时间
+ROS_INFO("当前时刻:%.2f",ros::Time::now().toSec());
+ros::Duration du(10);//持续10秒钟,参数是double类型的，以秒为单位
+du.sleep();//按照指定的持续时间休眠
+ROS_INFO("持续时间:%.2f",du.toSec());//将持续时间换算成秒
+ROS_INFO("当前时刻:%.2f",ros::Time::now().toSec());
+
+4.时间运算
+ROS_INFO("时间运算");
+ros::Time now = ros::Time::now();
+ros::Duration du1(10);
+ros::Duration du2(20);
+ROS_INFO("当前时刻:%.2f",now.toSec());
+//1.time 与 duration 运算
+ros::Time after_now = now + du1;
+ros::Time before_now = now - du1;
+ROS_INFO("当前时刻之后:%.2f",after_now.toSec());
+ROS_INFO("当前时刻之前:%.2f",before_now.toSec());
+
+//2.duration 之间相互运算
+ros::Duration du3 = du1 + du2;
+ros::Duration du4 = du1 - du2;
+ROS_INFO("du3 = %.2f",du3.toSec());
+ROS_INFO("du4 = %.2f",du4.toSec());
+//PS: time 与 time 不可以运算
+// ros::Time nn = now + before_now;//异常
+
+5.设置频率
+ros::Rate rate(1);//指定频率
+while (true)
+{
+    ROS_INFO("-----------code----------");
+    rate.sleep();//休眠，休眠时间 = 1 / 频率。
+}
+
+6.定时器
+创建定时器：Timer createTimer(Duration period, const TimerCallback& callback, bool oneshot = false, bool autostart = true) const
+
+例： ros::Timer timer = nh.createTimer(ros::Duration(0.5),doSomeThing,true);（记得回调函数spin）
+\brief 创建一个定时器，按照指定频率调用回调函数。
+\param period 时间间隔
+\param callback 回调函数
+\param oneshot 如果设置为 true,只执行一次回调函数，设置为 false,就循环执行。
+\param autostart 如果为true，返回已经启动的定时器,设置为 false，需要手动启动。// timer.start();
+
+五、其他函数
+节点状态判断  bool ok();   \return如果节点还健在返回true，否则返回false
+节点关闭函数  void shutdown();
+日志函数
+ROS_DEBUG("hello,DEBUG"); //不会输出
+ROS_INFO("hello,INFO"); //默认白色字体
+ROS_WARN("Hello,WARN"); //默认黄色字体
+ROS_ERROR("hello,ERROR");//默认红色字体
+ROS_FATAL("hello,FATAL");//默认红色字体
+//优先级递增
+

@@ -1,0 +1,15 @@
+<!-- 文件放置于参数服务器代码功能包内（即homework_3）如果位置改动记得修改pkg文件包（luanch文件所在包）。
+还有读取yaml文件需把my_yaml的完整路径输入
+使用时终端输入：source ./devel/setup.bash 
+roslaunch homework_3 start.launch -->
+
+<launch>
+  <!-- 加载yaml文件 -->
+  <rosparam file="$(find homework_3)/src/my_yaml.yaml" />
+
+  <!-- 启动发布者节点 -->
+  <node name="yaml_publisher" pkg="homework_3" type="yaml_publisher" output="screen" />
+
+  <!-- 启动订阅者节点 -->
+  <node name="yaml_subscriber" pkg="homework_3" type="yaml_subscriber" output="screen" />
+</launch>
