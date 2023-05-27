@@ -7,6 +7,7 @@ ros::Publisher pub;  //main函数里面声明的用不到回调函数里，所�
 
 void Bigword(const std_msgs::String::ConstPtr &msg)  //回调函数，把得到的值引用到msg
 {  
+    int a=1;
     std::string Data = msg->data.c_str();  //需要定义一个字符串变量来接收，使用指针传输
      
     transform(Data.begin(),Data.end(),Data.begin(),::toupper); //转换大小写

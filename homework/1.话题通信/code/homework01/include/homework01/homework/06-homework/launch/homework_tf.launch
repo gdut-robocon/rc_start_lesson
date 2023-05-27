@@ -1,0 +1,12 @@
+<launch>
+      <node pkg = "turtlesim" type = "turtlesim_node" name = "turtle1" output = "screen" />
+      <node pkg = "turtlesim" type = "turtle_teleop_key" name = "key1" output = "screen" />
+
+      <node pkg = "homework06_tf" type = "turtle2_get" name = "turtle2" output = "screen" />
+
+      <node pkg = "homework06_tf" type = "pub_pose" name = "pub1" args = "turtle1" output = "screen" />
+      <node pkg = "homework06_tf" type = "pub_pose" name = "pub2" args = "turtle2" output = "screen" />
+
+      <node pkg = "homework06_tf" type = "follow" name = "follow" output = "screen" />
+
+</launch>
