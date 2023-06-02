@@ -1,0 +1,7 @@
+<launch>
+                                    <!--(功能包)/子文件夹/文件名（包括后缀）-->
+    <rosparam command="load" file="$(find homework_vscode)/yaml/my_yaml.yaml" />
+    <node  pkg="homework_vscode" type="homework03_param" name="yaml_publisher" output="screen" />
+    <node  pkg="homework_vscode" type="homework03_param_sub" name="yaml_subscriber" output="screen" />
+
+</launch>
