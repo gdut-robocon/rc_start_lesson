@@ -1,0 +1,5 @@
+<launch>
+    <rosparam command="load" file="$(find launch)/launch/my_yaml.yaml" />
+    <node pkg="launch" type="yaml_publisher" name="yaml_publisher" output="screen" />
+    <node pkg="launch" type="yaml_subscriber"  name="yaml_subscriber" output="screen" />
+</launch>
