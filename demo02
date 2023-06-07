@@ -1,0 +1,30 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include <sstream>
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <algorithm>
+
+static ros::Publisher msg_s;
+static ros::Publisher msg_S;
+void  doMsg(const std_msgs::String::ConstPtr &msg){
+ros::NodeHandle nh_S;
+
+ros::Publisher pub_S=nh_S.advertise<std_msgs::String>("output_topic",1000);
+std_msgs::String msg_S;
+std::string msg_s = msg->data;
+std::transform(msg_s.begin(),msg_s.end(),msg_s.begin(),::toupper);
+   msg_S.data = msg_s;
+ROS_INFO("erer订阅的数据:%s",msg_S.data.c_str());
+ pub_S.publish(msg_S);
+}
+
+int main(int argc,char*argv[]){
+setlocale(LC_ALL,"");
+ros::init(argc,argv,"string_converter");
+ros::NodeHandle nh_s;
+ros::Subscriber sub_s = nh_s.subscribe("intput_topic",1000,doMsg);
+ros::spin();
+    return 0;
+}
