@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+    <node pkg="turtlesim" type="turtle_teleop_key" name="key" output="screen" />
+    <node pkg="gui" type="spawngui" name="turtle2" output="screen" />
+    <node pkg="gui" type="pubgui" name="pub1" args="turtle1" output="screen" />
+    <node pkg="gui" type="pubgui" name="pub2" args="turtle2" output="screen" />
+    <node pkg="gui" type="controlgui" name="control" output="screen" />
+</launch>
