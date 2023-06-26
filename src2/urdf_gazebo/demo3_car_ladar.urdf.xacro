@@ -1,0 +1,77 @@
+<robot name="mycar" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- 支撑杆 -->
+    <xacro:property name="support_radius" value="0.01" />
+    <xacro:property name="support_length" value="0.15" />
+    <xacro:property name="support_mass" value="0.08" />
+
+    <link name="support">
+        <visual>
+            <geometry>
+                <cylinder radius="${support_radius}" length="${support_length}" />
+            </geometry>
+
+            <material name="yellow">
+                <color rgba="0.8 0.5 0 1" />
+            </material>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="${support_radius}" length="${support_length}" />
+            </geometry>
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${support_mass}" r="${support_radius}" h="${support_length}" />
+    </link>
+
+    <gazebo reference="support">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <!-- 雷达主体 -->
+    <xacro:property name="ladar_radius" value="0.05" />
+    <xacro:property name="ladar_length" value="0.03" />
+    <xacro:property name="ladar_mass" value="0.03" />
+
+    <link name="ladar">
+        <visual>
+            <geometry>
+                <cylinder radius="${ladar_radius}" length="${ladar_length}" />
+            </geometry>
+
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="${ladar_radius}" length="${ladar_length}" />
+            </geometry>
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${ladar_mass}" r="${ladar_radius}" h="${ladar_length}" />
+    </link>
+
+    <gazebo reference="ladar">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!-- 关节连接 -->
+    <!-- 1.支撑杆与底座 -->
+    <joint name="support2base" type="fixed">
+        <parent link="base_link" />
+        <child link="support" />
+        <origin xyz="0 0 ${base_length / 2 + support_length / 2}" />
+    </joint>
+
+    <!-- 2.雷达与支撑杆 -->
+    <joint name="ladar2support" type="fixed">
+        <parent link="support" />
+        <child link="ladar" />
+        <origin xyz="0 0 ${support_length / 2 + ladar_length / 2}" />
+    </joint>
+
+</robot>

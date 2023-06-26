@@ -1,0 +1,160 @@
+<robot name="mycar" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- 定义常数 pi -->
+    <xacro:property name="PI" value="3.1415927" />
+
+    <!-- footprint -->
+    <xacro:property name="footprint_radius" value="0.001" />
+    <link name="base_footprint">
+        <visual>
+            <geometry>
+                <sphere radius="${footprint_radius}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="footprint_color">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <!-- 底盘为圆柱状，半径 10cm，高 8cm -->
+    <xacro:property name="base_radius" value="0.1" />
+    <xacro:property name="base_length" value="0.08" />
+    <xacro:property name="base_mass" value="1" />
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_radius}" />
+            </geometry>
+
+            <material name="yellow">
+                <color rgba="0.5 0.3 0.0 0.5" />
+            </material>
+        </visual>
+
+        <!-- 若要在 gazebo 中显示机器人模型，则需要设置碰撞参数和惯性矩阵
+            碰撞参数：对于规则物体，碰撞参数即为 visual 中的 geometry 
+            惯性矩阵：需要计算得出，可调用封装好的 xacro 宏-->
+    
+         <collision>
+            <geometry>
+                <cylinder radius="${base_radius}" length="${base_radius}" />
+            </geometry>
+        </collision>
+
+        <xacro:cylinder_inertial_matrix m="${base_mass}" r="${base_radius}" h="${base_length}" />
+    </link>
+
+    <!-- 设置在 gazebo 中显示的颜色（之前在 rviz 中设置的颜色无法在 gazebo 中显示，故需另外设置） -->
+    <gazebo reference="base_link">
+        <material>Gazebo/Yellow</material>
+    </gazebo>
+
+    <!-- 关联 footprint 和 base_link -->
+    <!-- 底盘离地间距为 1.5cm -->
+    <xacro:property name="lidi" value="0.015" />
+    <joint name="base2foot" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0 0 ${lidi}" rpy="0 0 0" />
+    </joint>
+
+    <!-- 左右驱动轮 -->
+    <!-- 两个驱动轮半径为 3.25cm,轮胎宽度1.5cm -->
+    <xacro:property name="go_wheel_radius" value="0.0325" />
+    <xacro:property name="go_wheel_length" value="0.015" />
+    <xacro:property name="go_wheel_joint_z" value="${-1*(base_length / 2 + lidi - go_wheel_radius)}" />
+    <xacro:property name="go_wheel_mass" value="0.1" />
+
+    <xacro:macro name="go_wheel_func" params="go_wheel_name flag">
+    <!-- wheel_name 为轮子名字，输入 left 或 right -->
+    <!-- flag 为标志，左轮为1，右轮为-1 -->
+        <link name="${go_wheel_name}_wheel">
+            <visual>
+                <geometry>
+                    <cylinder radius="${go_wheel_radius}" length="${go_wheel_length}" />
+                </geometry>
+                <origin xyz="0 0 0" rpy="${PI / 2} 0 0" />
+                <material name="black">
+                    <color rgba="0 0 0 1" />
+                </material>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <cylinder radius="${go_wheel_radius}" length="${go_wheel_length}" />
+                </geometry>
+            </collision>
+
+            <xacro:cylinder_inertial_matrix m="${go_wheel_mass}" r="${go_wheel_radius}" h="${go_wheel_length}" />
+
+        </link>
+
+         <gazebo reference="${go_wheel_name}_wheel">
+            <material>Gazebo/Black</material>
+        </gazebo>
+
+        <!-- 关节偏移：
+                x 无偏移
+                y 车体半径(左轮在正半轴，右轮在负半轴)
+                z z = -(车体高度 / 2 + 离地间距 - 车轮半径) -->
+        <joint name="${go_wheel_name}2base" type="continuous">
+            <parent link="base_link" />
+            <child link="${go_wheel_name}_wheel" />
+            <origin xyz="0 ${flag * base_radius} ${go_wheel_joint_z}" />
+            <axis xyz="0 1 0" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:go_wheel_func go_wheel_name="left" flag="1" />
+    <xacro:go_wheel_func go_wheel_name="right" flag="-1" />
+
+    <!-- 前后万向轮 -->
+    <!-- 两个万向轮为球状，半径 0.75cm -->
+    <xacro:property name="round_wheel_radius" value="0.0075" />
+    <xacro:property name="round_wheel_mass" value="0.01" />
+    
+    <xacro:macro name="round_wheel_func" params="round_wheel_name flag">
+        <link name="${round_wheel_name}_wheel">
+            <visual>
+                <geometry>
+                    <sphere radius="${round_wheel_radius}" />
+                </geometry>
+
+                <material name="black">
+                    <color rgba="0 0 0 1" />
+                </material>
+            </visual>
+
+            <collision>
+                <geometry>
+                    <sphere radius="${round_wheel_radius}" />
+                </geometry>
+            </collision>
+
+            <xacro:sphere_inertial_matrix m="${round_wheel_mass}" r="${round_wheel_radius}" />
+
+        </link>
+
+         <gazebo reference="${round_wheel_name}_wheel">
+            <material>Gazebo/Black</material>
+        </gazebo>
+        
+
+        <!-- 关节偏移：
+                x x = 车体半径 - 轮子半径(前轮在正半轴，后轮在负半轴)
+                y 无偏移
+                z z = -(车体高度 / 2 + 离地间距 / 2) -->
+        <joint name="${round_wheel_name}2base" type="continuous">
+            <parent link="base_link" />
+            <child link="${round_wheel_name}_wheel" />
+            <origin xyz="${flag * (base_radius - round_wheel_radius)} 0 ${-(base_length / 2 + lidi / 2)}" />
+            <axis xyz="1 1 1" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:round_wheel_func round_wheel_name="front" flag="1" />
+    <xacro:round_wheel_func round_wheel_name="back" flag="-1" />
+
+</robot>

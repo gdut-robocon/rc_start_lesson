@@ -1,0 +1,8 @@
+<launch>
+
+    <!-- 加载 urdf 文件里的数据进参数服务器 -->
+    <param name="robot_description" textfile="$(find urdf_rviz)/urdf/urdf/demo1_link.urdf" />
+    <!-- 启动 rviz , args 参数是加载保存的 rviz 配置 -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find urdf_rviz)/config/show_mycar.rviz"/>
+
+</launch>
