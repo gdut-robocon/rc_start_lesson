@@ -1,0 +1,5 @@
+<launch>
+<!-- GUI -->
+<node pkg="plumbing_param_server" type="hw_param_pub" name="yaml_publisher" output="screen"/>
+<node pkg="plumbing_param_server" type="hw_param_sub" name="yaml_subscriber" output="screen" />
+</launch>
