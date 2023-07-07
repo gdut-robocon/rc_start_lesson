@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="plumbing_work" type="yaml_publisher" name="pub" output="screen" />
+    <node pkg="plumbing_work" type="yaml_subscriber" name="sub" output="screen" />
+</launch>
