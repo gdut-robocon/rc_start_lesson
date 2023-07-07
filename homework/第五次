@@ -1,0 +1,9 @@
+<launch>
+  <!-- 启动yaml_publisher节点 -->
+  <node pkg="yaml_param" type="yaml_publisher" name="yaml_publisher" output="screen">
+  </node>
+
+  <!-- 启动yaml_subscriber节点 -->
+  <node pkg="yaml_param" type="yaml_subscriber" name="yaml_subscriber" output="screen">
+  </node>
+</launch>
