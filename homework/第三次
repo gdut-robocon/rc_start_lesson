@@ -1,0 +1,42 @@
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+#include <yaml-cpp/yaml.h>
+#include <fstream>
+
+int main(int argc, char **argv) {
+    // 初始化ROS节点
+    ros::init(argc, argv, "yaml_publisher");
+    ros::NodeHandle nh;
+    // 创建一个发布者，发布类型的消息到“yaml_param”话题
+    ros::Publisher pub = nh.advertise<std_msgs::String>("yaml_param", 10);
+    // 设置发布频率为10Hz
+    ros::Rate rate(10);
+    // 读取yaml文件中的参数
+    YAML::Node node = YAML::LoadFile("params.yaml");
+    // 循环发布参数到话题上
+    while (ros::ok()) {
+        std_msgs::String msg;
+        msg.data = YAML::Dump(node);
+        pub.publish(msg);
+        rate.sleep();
+    }
+    return 0;
+}
+```
+```订阅方
+#include <ros/ros.h>
+#include <std_msgs/String.h>
+void callback(const std_msgs::String::ConstPtr& msg) {
+    // 打印接收到的消息
+    ROS_INFO("I heard: [%s]", msg->data.c_str());
+}
+int main(int argc, char **argv) {
+    // 初始化ROS节点
+    ros::init(argc, argv, "yaml_subscriber");
+    ros::NodeHandle nh;
+    // 创建一个订阅者，订阅“yaml_param”话题，指定回调函数为callback
+    ros::Subscriber sub = nh.subscribe("yaml_param", 10, callback);
+    // 循环等待消息
+    ros::spin();
+    return 0;
+}
