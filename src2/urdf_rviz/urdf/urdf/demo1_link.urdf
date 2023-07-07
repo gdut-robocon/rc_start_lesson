@@ -1,0 +1,39 @@
+<robot name="myCar">
+
+    <link name="base_link">
+    <!-- link 标签用于设置连杆 -->
+
+        <visual>
+        <!-- visual 标签用于设置可视化 -->
+
+            <geometry>
+            <!-- geometry 是设置几何形状 -->
+
+                <box size="0.5 0.5 1" />
+                <!-- box 是立方体 -->
+
+                <!-- <cylinder radius= "1.0" length= "1.0" /> -->
+                <!-- cylinder 是圆柱体 -->
+
+                <!-- <sphere radius="1" /> -->
+                <!-- sphere 是球 -->
+
+                <!-- <mesh filename="package://包名/路径/文件"> -->
+                <!-- mesh 是设置皮肤 -->
+
+            </geometry>
+
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <!-- origin 是设置初始状态， xyz为偏移量， rpy为欧拉角(分别为xyz方向的倾角) -->
+
+            <material name="car_color">
+            <!-- meterial 是设置材料属性 -->
+
+                <color rgba="0 1 0 1" />
+                <!-- color 是设置材料颜色， rgba为三原色和透明度，取值都是[0,1] -->
+
+            </material>
+
+        </visual>
+    </link>
+</robot>

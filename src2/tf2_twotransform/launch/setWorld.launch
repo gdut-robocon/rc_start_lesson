@@ -1,0 +1,7 @@
+<launch>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="son1" args="3 0 0 0 0 0 /world /son1" output="screen" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="son2" args="6 0 0 0 0 0 /world /son2" output="screen" />
+    <node pkg="tf2_twotransform" type="demo1_twotrans_sub" name="demo1_twotrans_sub" output="screen" />
+    
+</launch>

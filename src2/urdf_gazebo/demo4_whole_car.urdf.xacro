@@ -1,0 +1,10 @@
+<robot name="mycar" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- 载入文件 -->
+    <xacro:include filename="car_h.urdf.xacro" />
+    <xacro:include filename="demo1_car_base.urdf.xacro" />
+    <xacro:include filename="demo2_car_camera.urdf.xacro" />
+    <xacro:include filename="demo3_car_ladar.urdf.xacro" />
+    <xacro:include filename="gazebo/move.xacro" />
+
+</robot>

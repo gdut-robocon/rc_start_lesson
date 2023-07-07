@@ -1,0 +1,19 @@
+<launch>
+
+    <!-- 启动第一个乌龟GUI，生成第一个乌龟 turtle1 -->
+    <node pkg="turtlesim" type="turtlesim_node" name="turtle1" output="screen" />
+    <node pkg="turtlesim" type="turtle_teleop_key" name="key" output="screen" />
+
+    <!-- 生成第二个乌龟 -->
+    <node pkg="tf2_turtle_follow" type="demo1_new_turtle" name="turtle2" output="screen" />
+
+    <!-- 获取乌龟相对于 world 的关系 -->
+    <node pkg="tf2_turtle_follow" type="demo2_get_position" args="turtle1" name="position1" output="screen" />
+    <node pkg="tf2_turtle_follow" type="demo2_get_position" args="turtle2" name="position2" output="screen" />
+
+    <!-- 发布信息至 turtle2 中 -->
+    <node pkg="tf2_turtle_follow" type="demo3_control_follow" name="control" output="screen" />
+    
+    
+
+</launch>

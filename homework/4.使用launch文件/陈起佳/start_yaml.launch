@@ -1,0 +1,6 @@
+<launch>
+
+    <node pkg="homework3" type="demo1_yaml" name="demo1_yaml" output="screen" />
+        <rosparam file="$(find homework3)/launch/my_yaml.yaml" command="load"/>
+    <node pkg="homework3" type="demo2_yamlsub" name="demo2_yamlsub" output="screen" />
+</launch>
