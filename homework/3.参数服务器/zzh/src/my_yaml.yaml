@@ -1,0 +1,13 @@
+my_param: 逸一时，误一世
+name: boki
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_chunaizhanshen__43075: http://Chunaizhanshen:43075/
+    host_chunaizhanshen__43113: http://Chunaizhanshen:43113/
+rosversion: '1.16.0
+
+  '
+run_id: 6cfea418-ecab-11ed-9597-5945b7cce023
